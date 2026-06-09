@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alvaro Acarapi Loza — Ingeniero de Sistemas</title>
+<meta name="description" content="Portafolio de Alvaro Gonzalo Acarapi Loza — Ingeniero de Sistemas, Soporte IT, Networking y Desarrollo Web. La Paz, Bolivia."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080D1A;--surface:#0E1628;--card:#111E36;--border:#1A2D52;
+  --accent:#00D4FF;--accent2:#3B82F6;--accent3:#8B5CF6;
+  --text:#E8F0FE;--muted:#6B85A8;
+  --mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;
+  --radius:8px;--glow:0 0 20px rgba(0,212,255,0.25);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+#cursor{width:12px;height:12px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform 0.15s,width 0.2s,height 0.2s}
+#cursor-ring{width:36px;height:36px;border:1px solid rgba(0,212,255,0.5);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.3s,width 0.3s,height 0.3s}
+
+/* PROGRESS */
+#progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent3));z-index:200;width:0%;transition:width 0.1s linear}
+
+/* BACK TOP */
+#back-top{position:fixed;bottom:2rem;right:2rem;background:var(--card);border:1px solid var(--border);color:var(--accent);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;z-index:50;opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.2s,border-color 0.2s}
+#back-top.show{opacity:1;pointer-events:all}
+#back-top:hover{border-color:var(--accent);transform:translateY(-3px)}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(8,13,26,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:padding 0.3s}
+nav.scrolled{padding:0.6rem 2rem}
+.nav-logo{font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--accent);letter-spacing:0.08em}
+.nav-logo span{color:var(--text)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:0.75rem;color:var(--muted);text-decoration:none;transition:color 0.2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after{width:100%}
+.nav-menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
+#particle-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-inner{max-width:920px;margin:0 auto;position:relative;z-index:2}
+.hero-label{font-family:var(--mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp 0.7s 0.2s forwards}
+.hero-name{font-family:var(--sans);font-size:clamp(3rem,8vw,6rem);font-weight:700;line-height:1.02;opacity:0;animation:fadeUp 0.7s 0.4s forwards}
+.hero-name .accent{color:var(--accent)}
+.hero-name .glitch{position:relative;display:inline-block}
+.hero-name .glitch::before,.hero-name .glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;clip-path:polygon(0 0,100% 0,100% 35%,0 35%)}
+.hero-name .glitch::before{color:var(--accent3);animation:glitch1 4s infinite 2s}
+.hero-name .glitch::after{color:var(--accent2);clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%);animation:glitch2 4s infinite 2s}
+@keyframes glitch1{0%,90%,100%{transform:translateX(0);opacity:0}91%{transform:translateX(-4px);opacity:1}93%{transform:translateX(4px);opacity:1}95%{transform:translateX(0);opacity:0}}
+@keyframes glitch2{0%,90%,100%{transform:translateX(0);opacity:0}91%{transform:translateX(4px);opacity:1}93%{transform:translateX(-4px);opacity:1}95%{transform:translateX(0);opacity:0}}
+.hero-subtitle{font-family:var(--sans);font-size:clamp(1rem,2.5vw,1.35rem);color:var(--muted);margin-top:0.75rem;margin-bottom:2rem;opacity:0;animation:fadeUp 0.7s 0.6s forwards}
+.hero-typing{display:inline-block;border-right:2px solid var(--accent);animation:blink 0.8s infinite;padding-right:4px}
+@keyframes blink{0%,100%{border-color:var(--accent)}50%{border-color:transparent}}
+.hero-desc{max-width:540px;color:var(--muted);font-size:0.95rem;line-height:1.8;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.7s 0.8s forwards}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp 0.7s 1s forwards}
+.btn{padding:0.75rem 2rem;border-radius:5px;font-family:var(--mono);font-size:0.82rem;font-weight:500;text-decoration:none;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,opacity 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:var(--accent);color:var(--bg);box-shadow:0 4px 20px rgba(0,212,255,0.3)}
+.btn-primary:hover{box-shadow:0 8px 30px rgba(0,212,255,0.5)}
+.btn-outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn-outline:hover{background:rgba(0,212,255,0.08)}
+.hero-stats{display:flex;gap:3rem;margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;opacity:0;animation:fadeUp 0.7s 1.2s forwards}
+.stat-num{font-family:var(--sans);font-size:2.2rem;font-weight:700;color:var(--accent)}
+.stat-label{font-size:0.78rem;color:var(--muted);margin-top:0.15rem}
+
+/* SECTIONS */
+section{padding:6rem 2rem}
+.container{max-width:940px;margin:0 auto}
+.section-eyebrow{font-family:var(--mono);font-size:0.7rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.4rem}
+.section-title{font-family:var(--sans);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:3rem;color:var(--text)}
+
+/* ABOUT */
+#about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:200px 1fr;gap:3.5rem;align-items:start}
+.about-photo-col{display:flex;justify-content:center}
+.photo-wrap{position:relative;width:180px;height:180px}
+.profile-photo{width:180px;height:180px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);box-shadow:0 0 30px rgba(0,212,255,0.25);display:block}
+.photo-placeholder{width:180px;height:180px;border-radius:50%;border:2px dashed var(--border);background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;cursor:pointer;transition:border-color 0.2s}
+.photo-placeholder:hover{border-color:var(--accent)}
+.photo-icon{font-size:2.8rem;opacity:0.35}
+.photo-hint{font-family:var(--mono);font-size:0.58rem;color:var(--muted);text-align:center;line-height:1.7}
+.photo-hint code{color:var(--accent)}
+.photo-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(0,212,255,0.2);animation:ring-spin 8s linear infinite;pointer-events:none}
+@keyframes ring-spin{to{transform:rotate(360deg)}}
+.about-right{display:flex;flex-direction:column;gap:1.5rem}
+.about-text p{color:var(--muted);line-height:1.85;margin-bottom:0.9rem;font-size:0.94rem}
+.about-cards{display:flex;flex-direction:column;gap:0.6rem}
+.info-card{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);transition:border-color 0.2s,transform 0.2s;opacity:0;transform:translateY(20px)}
+.info-card.visible{opacity:1;transform:none}
+.info-card:hover{border-color:var(--accent);transform:translateX(4px)!important}
+.info-icon{font-size:1.1rem;flex-shrink:0;margin-top:0.1rem}
+.info-key{font-family:var(--mono);font-size:0.65rem;color:var(--accent);margin-bottom:0.2rem;letter-spacing:0.1em}
+.info-val{font-size:0.88rem;color:var(--text)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color 0.2s,transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden;opacity:0;transform:translateY(22px)}
+.skill-card.visible{opacity:1;transform:translateY(0)}
+.skill-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,0.04) 0%,transparent 60%);opacity:0;transition:opacity 0.3s}
+.skill-card.visible:hover{border-color:var(--accent);transform:translateY(-5px);box-shadow:var(--glow)}
+.skill-card.visible:hover::before{opacity:1}
+.skill-title{font-family:var(--sans);font-size:0.9rem;font-weight:600;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.tag{background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.18);color:var(--muted);border-radius:3px;padding:0.22rem 0.6rem;font-family:var(--mono);font-size:0.67rem;transition:background 0.2s,color 0.2s;cursor:default}
+.tag:hover{background:rgba(0,212,255,0.15);color:var(--accent)}
+.skills-grid .skill-card:nth-child(1){transition-delay:0s}
+.skills-grid .skill-card:nth-child(2){transition-delay:0.08s}
+.skills-grid .skill-card:nth-child(3){transition-delay:0.16s}
+.skills-grid .skill-card:nth-child(4){transition-delay:0.24s}
+
+/* PROJECTS */
+#projects{background:var(--surface)}
+.projects-list{display:flex;flex-direction:column;gap:1.2rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden;opacity:0;transform:translateY(22px)}
+.project-card.visible{opacity:1;transform:translateY(0)}
+.project-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform 0.3s}
+.project-card.visible:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:var(--glow)}
+.project-card.visible:hover::after{transform:scaleY(1)}
+.projects-list .project-card:nth-child(1){transition-delay:0s}
+.projects-list .project-card:nth-child(2){transition-delay:0.1s}
+.projects-list .project-card:nth-child(3){transition-delay:0.2s}
+.project-num{font-family:var(--mono);font-size:0.68rem;color:var(--accent3);margin-bottom:0.4rem;letter-spacing:0.1em}
+.project-title{font-family:var(--sans);font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:0.75rem}
+.project-desc{color:var(--muted);font-size:0.88rem;line-height:1.8;margin-bottom:1.2rem}
+.stack{display:flex;flex-wrap:wrap;gap:0.4rem}
+.stack-tag{background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);color:#93C5FD;border-radius:3px;padding:0.2rem 0.6rem;font-family:var(--mono);font-size:0.65rem}
+.project-actions{display:flex;flex-direction:column;gap:0.5rem}
+.proj-btn{font-family:var(--mono);font-size:0.7rem;color:var(--accent);text-decoration:none;border:1px solid var(--border);padding:0.45rem 1rem;border-radius:4px;transition:background 0.2s,border-color 0.2s;white-space:nowrap;text-align:center;display:block}
+.proj-btn:hover{background:rgba(0,212,255,0.1);border-color:var(--accent)}
+
+/* EXPERIENCE */
+.timeline{position:relative;padding-left:1.8rem}
+.timeline::before{content:'';position:absolute;left:0;top:0.4rem;bottom:0;width:1px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:2.8rem;padding-left:1.5rem;opacity:0;transform:translateX(-16px);transition:opacity 0.5s,transform 0.5s}
+.timeline-item.visible{opacity:1;transform:none}
+.timeline-dot{position:absolute;left:-1.85rem;top:0.3rem;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);transition:background 0.2s,box-shadow 0.2s}
+.timeline-item:hover .timeline-dot{background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.t-date{font-family:var(--mono);font-size:0.7rem;color:var(--accent);margin-bottom:0.3rem}
+.t-role{font-family:var(--sans);font-size:1.05rem;font-weight:600;color:var(--text)}
+.t-company{font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem}
+.t-bullets{padding-left:1.1rem}
+.t-bullets li{font-size:0.87rem;color:var(--muted);margin-bottom:0.3rem}
+
+/* CERTS */
+#certifications{background:var(--surface)}
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0.8rem}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.1rem 1.4rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color 0.2s,transform 0.2s;opacity:0;transform:translateY(20px)}
+.cert-card.visible{opacity:1;transform:none}
+.cert-card.visible:hover{border-color:var(--accent2);transform:translateY(-2px)}
+.cert-year{font-family:var(--mono);font-size:0.68rem;color:var(--accent);white-space:nowrap;background:rgba(0,212,255,0.08);padding:0.2rem 0.5rem;border-radius:3px;margin-top:0.1rem;flex-shrink:0}
+.cert-name{font-size:0.85rem;color:var(--text);line-height:1.4}
+.cert-issuer{font-size:0.75rem;color:var(--muted);margin-top:0.2rem}
+
+/* CONTACT */
+.contact-grid{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.contact-desc{color:var(--muted);line-height:1.85;margin-bottom:1.5rem;font-size:0.93rem}
+.contact-links{display:flex;flex-direction:column;gap:0.8rem}
+.c-link{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:var(--text);font-size:0.88rem;padding:0.75rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:6px;transition:border-color 0.2s,color 0.2s,transform 0.2s}
+.c-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(4px)}
+.c-link-icon{font-size:1rem}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-field{display:flex;flex-direction:column;gap:0.35rem}
+.form-field label{font-family:var(--mono);font-size:0.68rem;color:var(--accent);letter-spacing:0.1em}
+.form-field input,.form-field textarea{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:0.75rem 1rem;font-family:var(--body);font-size:0.9rem;resize:vertical;outline:none;transition:border-color 0.2s,box-shadow 0.2s}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,255,0.1)}
+.form-field textarea{min-height:110px}
+.form-submit{background:var(--accent);color:var(--bg);border:none;padding:0.85rem;border-radius:5px;font-family:var(--mono);font-size:0.82rem;font-weight:600;cursor:pointer;transition:opacity 0.2s,transform 0.2s;box-shadow:0 4px 20px rgba(0,212,255,0.25)}
+.form-submit:hover{opacity:0.88;transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,255,0.4)}
+.form-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.form-msg{padding:0.75rem 1rem;border-radius:5px;font-family:var(--mono);font-size:0.78rem;display:none;margin-top:0.25rem}
+.form-msg.success{display:block;background:rgba(0,212,255,0.1);border:1px solid var(--accent);color:var(--accent)}
+.form-msg.error{display:block;background:rgba(239,68,68,0.1);border:1px solid #EF4444;color:#FCA5A5}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:0.7rem}
+footer span{color:var(--accent)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem}
+  .about-photo-col{order:-1}
+  .project-card{grid-template-columns:1fr}
+  .project-actions{flex-direction:row}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:var(--bg);justify-content:center;align-items:center;gap:2rem;z-index:99}
+  .nav-links.open a{font-size:1.2rem}
+  .nav-menu-btn{display:block;z-index:100;position:relative}
+  body{cursor:auto}
+  #cursor,#cursor-ring{display:none}
+  section{padding:4rem 1.2rem}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="progress-bar"></div>
+<button id="back-top" title="Volver arriba">↑</button>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AA<span>_LOZA</span></div>
+  <button class="nav-menu-btn" aria-label="Menú">☰</button>
+  <ul class="nav-links">
+    <li><a href="#about">./sobre-mi</a></li>
+    <li><a href="#skills">./skills</a></li>
+    <li><a href="#projects">./proyectos</a></li>
+    <li><a href="#experience">./experiencia</a></li>
+    <li><a href="#certifications">./certs</a></li>
+    <li><a href="#contact">./contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-label">// Ingeniero de Sistemas · La Paz, Bolivia</div>
+    <h1 class="hero-name">
+      <span class="glitch" data-text="Alvaro">Alvaro</span><br/>
+      <span class="accent">Acarapi</span> Loza
+    </h1>
+    <p class="hero-subtitle"><span class="hero-typing"></span></p>
+    <p class="hero-desc">Especialista en infraestructuras tecnológicas, redes empresariales y desarrollo web. Construyo soluciones que funcionan y sistemas que no se caen.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">→ Ver proyectos</a>
+      <a href="#contact"  class="btn btn-outline">✉ Contáctame</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num" data-target="5" data-suffix="+">5+</div><div class="stat-label">años de experiencia</div></div>
+      <div><div class="stat-num" data-target="3" data-suffix="">3</div><div class="stat-label">proyectos destacados</div></div>
+      <div><div class="stat-num" data-target="10" data-suffix="+">10+</div><div class="stat-label">certificaciones</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-eyebrow">// 01 — Sobre mí</div>
+    <h2 class="section-title">Quién soy</h2>
+    <div class="about-grid">
+
+      <div class="about-photo-col">
+        <div class="photo-wrap">
+          <!--
+            FOTO: reemplaza esta imagen con la URL de tu foto.
+            Opciones:
+              1. Sube foto.jpg al mismo repositorio y pon src="foto.jpg"
+              2. Usa un link directo de LinkedIn o Google Drive
+          -->
+          <div class="photo-placeholder" id="photo-placeholder">
+            <span class="photo-icon">👤</span>
+            <div class="photo-hint">
+              Tu foto aquí<br/>
+              <code>src="foto.jpg"</code>
+            </div>
+          </div>
+          <!-- Descomenta y edita cuando tengas la foto:
+          <img src="foto.jpg" alt="Alvaro Acarapi Loza" class="profile-photo"/>
+          -->
+          <div class="photo-ring"></div>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <div class="about-text">
+          <p>Soy Ingeniero de Sistemas graduado de la Universidad Tecnológica Boliviana (UTB), con experiencia en soporte técnico IT, diagnóstico de hardware y software, administración de redes Cisco y desarrollo web full stack.</p>
+          <p>He trabajado en entornos empresariales, instituciones gubernamentales y startups en La Paz, siempre con foco en la continuidad operativa y la resolución rápida de problemas.</p>
+          <p>Actualmente amplío mis competencias en desarrollo web con PHP, Vue.js y MySQL, y en redes con Cisco CCNA 200-301, buscando oportunidades presenciales, remotas o con reubicación.</p>
+        </div>
+        <div class="about-cards">
+          <div class="info-card"><span class="info-icon">📍</span><div><div class="info-key">Ubicación</div><div class="info-val">La Paz, Bolivia</div></div></div>
+          <div class="info-card"><span class="info-icon">📧</span><div><div class="info-key">Email</div><div class="info-val">alvaroloza26@gmail.com</div></div></div>
+          <div class="info-card"><span class="info-icon">📱</span><div><div class="info-key">Teléfono</div><div class="info-val">+591 77327990</div></div></div>
+          <div class="info-card"><span class="info-icon">🔗</span><div><div class="info-key">LinkedIn</div><div class="info-val">linkedin.com/in/alvaroacarapi</div></div></div>
+          <div class="info-card"><span class="info-icon">🗣️</span><div><div class="info-key">Idiomas</div><div class="info-val">Español nativo · Inglés B1</div></div></div>
+          <div class="info-card"><span class="info-icon">💼</span><div><div class="info-key">Disponibilidad</div><div class="info-val">Presencial · Remoto · Reubicación</div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-eyebrow">// 02 — Competencias</div>
+    <h2 class="section-title">Habilidades técnicas</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-title">🖥️ Soporte IT & Hardware</div>
+        <div class="tags">
+          <span class="tag">Help Desk</span><span class="tag">Diagnóstico HW/SW</span><span class="tag">Mantenimiento preventivo</span><span class="tag">Active Directory</span><span class="tag">Windows Server</span><span class="tag">Linux</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">🌐 Redes & Networking</div>
+        <div class="tags">
+          <span class="tag">TCP/IP</span><span class="tag">LAN / Wi-Fi</span><span class="tag">Cisco CCNA</span><span class="tag">Configuración routers</span><span class="tag">VLANs</span><span class="tag">Seguridad de red</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">💻 Desarrollo Web</div>
+        <div class="tags">
+          <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JSON</span><span class="tag">AJAX</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-title">📊 Datos & Análisis</div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Data Science</span><span class="tag">Excel / M365</span><span class="tag">Gestión de BD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-eyebrow">// 03 — Proyectos</div>
+    <h2 class="section-title">Trabajo destacado</h2>
+    <div class="projects-list">
+
+      <div class="project-card">
+        <div>
+          <div class="project-num">Proyecto_01</div>
+          <div class="project-title">Sistema de Gestión de Inventario TI</div>
+          <p class="project-desc">Aplicación web para control de inventario de equipos informáticos en Tapia Tech. Permite registrar, actualizar y consultar el estado de hardware, fechas de mantenimiento y asignación por área. Incluye panel de reportes exportable.</p>
+          <div class="stack"><span class="stack-tag">HTML5</span><span class="stack-tag">CSS3</span><span class="stack-tag">JavaScript</span><span class="stack-tag">PHP</span><span class="stack-tag">MySQL</span><span class="stack-tag">JSON</span></div>
+        </div>
+        <div class="project-actions">
+          <a href="#" class="proj-btn">→ Demo</a>
+          <a href="#" class="proj-btn">⌥ Código</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <div class="project-num">Proyecto_02</div>
+          <div class="project-title">Dashboard de Monitoreo de Red</div>
+          <p class="project-desc">Herramienta de monitoreo en tiempo real para visualizar el estado de dispositivos en una red LAN empresarial. Muestra disponibilidad de nodos, latencia, alertas de caída y estadísticas de tráfico con Vue.js y API REST.</p>
+          <div class="stack"><span class="stack-tag">Vue.js</span><span class="stack-tag">JavaScript</span><span class="stack-tag">CSS3</span><span class="stack-tag">Python</span><span class="stack-tag">MySQL</span><span class="stack-tag">JSON</span></div>
+        </div>
+        <div class="project-actions">
+          <a href="#" class="proj-btn">→ Demo</a>
+          <a href="#" class="proj-btn">⌥ Código</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <div class="project-num">Proyecto_03</div>
+          <div class="project-title">Portal de Soporte Técnico (Help Desk)</div>
+          <p class="project-desc">Sistema de tickets para gestión de solicitudes de soporte IT. Los usuarios registran incidencias, el técnico las prioriza y actualiza su estado. Incluye base de conocimientos y reporte mensual por categoría.</p>
+          <div class="stack"><span class="stack-tag">HTML5</span><span class="stack-tag">CSS3</span><span class="stack-tag">JavaScript</span><span class="stack-tag">PHP</span><span class="stack-tag">MySQL</span><span class="stack-tag">AJAX</span></div>
+        </div>
+        <div class="project-actions">
+          <a href="#" class="proj-btn">→ Demo</a>
+          <a href="#" class="proj-btn">⌥ Código</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-eyebrow">// 04 — Experiencia</div>
+    <h2 class="section-title">Trayectoria profesional</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="t-date">Nov 2024 — Nov 2025</div>
+        <div class="t-role">Analista de Soporte TI</div>
+        <div class="t-company">Tapia Tech · La Paz, Bolivia</div>
+        <ul class="t-bullets">
+          <li>Soporte técnico a usuarios y sistemas informáticos</li>
+          <li>Diagnóstico y resolución de incidencias de hardware y software</li>
+          <li>Mantenimiento preventivo y correctivo de equipos</li>
+          <li>Contribución a la continuidad operativa de la infraestructura</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="t-date">Abr 2024 — Oct 2024</div>
+        <div class="t-role">Asistente Técnico</div>
+        <div class="t-company">Tecno Inside · La Paz, Bolivia</div>
+        <ul class="t-bullets">
+          <li>Instalación de redes LAN y configuración de puntos de acceso Wi-Fi</li>
+          <li>Asesoría técnica a clientes sobre soluciones tecnológicas</li>
+          <li>Gestión de inventario de equipos informáticos</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="t-date">Abr 2023 — Oct 2023</div>
+        <div class="t-role">Pasante TI</div>
+        <div class="t-company">Agencia Nacional de Hidrocarburos (ANH) · La Paz, Bolivia</div>
+        <ul class="t-bullets">
+          <li>Mantenimiento preventivo y correctivo de equipos</li>
+          <li>Optimización de conectividad en redes internas</li>
+          <li>Soporte a infraestructura tecnológica institucional</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="t-date">Mar 2019 — Sep 2019</div>
+        <div class="t-role">Auxiliar Área Técnica</div>
+        <div class="t-company">Auditores & Consultores HUGJAV Ltda. · La Paz, Bolivia</div>
+        <ul class="t-bullets">
+          <li>Organización y gestión de bases de datos</li>
+          <li>Mantenimiento preventivo y correctivo de equipos</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-eyebrow">// 05 — Formación</div>
+    <h2 class="section-title">Certificaciones</h2>
+    <div class="certs-grid">
+      <div class="cert-card"><div class="cert-year">2026</div><div><div class="cert-name">Desarrollo Web Completo HTML5, CSS3, JS, AJAX, PHP y MySQL</div><div class="cert-issuer">Udemy</div></div></div>
+      <div class="cert-card"><div class="cert-year">2025</div><div><div class="cert-name">Profesional Soporte Técnico IT</div><div class="cert-issuer">ICEI Tech</div></div></div>
+      <div class="cert-card"><div class="cert-year">2025</div><div><div class="cert-name">Diseño y Administración de Redes Cisco CCNA 200-301</div><div class="cert-issuer">ICEI Tech</div></div></div>
+      <div class="cert-card"><div class="cert-year">2024</div><div><div class="cert-name">NDG Linux Essentials</div><div class="cert-issuer">Cisco Networking Academy</div></div></div>
+      <div class="cert-card"><div class="cert-year">2024</div><div><div class="cert-name">Introduction to Data Science</div><div class="cert-issuer">Cisco Networking Academy</div></div></div>
+      <div class="cert-card"><div class="cert-year">2024</div><div><div class="cert-name">Datos con Python</div><div class="cert-issuer">Alura Latam</div></div></div>
+      <div class="cert-card"><div class="cert-year">2024</div><div><div class="cert-name">Computer Hardware Basics</div><div class="cert-issuer">Cisco Networking Academy</div></div></div>
+      <div class="cert-card"><div class="cert-year">2024</div><div><div class="cert-name">Python Essentials 1 & 2</div><div class="cert-issuer">Cisco Networking Academy</div></div></div>
+      <div class="cert-card"><div class="cert-year">2023</div><div><div class="cert-name">Seguridad de Canales Electrónicos de Pago</div><div class="cert-issuer">Banco Bisa</div></div></div>
+      <div class="cert-card"><div class="cert-year">2022</div><div><div class="cert-name">Inteligencia Artificial</div><div class="cert-issuer">Capacita Global Internacional</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-eyebrow">// 06 — Contacto</div>
+    <h2 class="section-title">Hablemos</h2>
+    <div class="contact-grid reveal">
+      <div>
+        <p class="contact-desc">Disponible para posiciones de Soporte IT, Help Desk, Administrador de Sistemas o Desarrollador Web Junior — presencial, remoto o con reubicación.</p>
+        <div class="contact-links">
+          <a href="mailto:alvaroloza26@gmail.com" class="c-link"><span class="c-link-icon">📧</span> alvaroloza26@gmail.com</a>
+          <a href="tel:+59177327990"              class="c-link"><span class="c-link-icon">📱</span> +591 77327990</a>
+          <a href="https://www.linkedin.com/in/alvaroacarapi" target="_blank" class="c-link"><span class="c-link-icon">🔗</span> linkedin.com/in/alvaroacarapi</a>
+          <a href="CV_Alvaro_Acarapi.pdf" download class="c-link"><span class="c-link-icon">📄</span> Descargar CV</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <!--
+          FORMULARIO: para recibir mensajes en GitHub Pages usa Formspree (gratis).
+          1. Crea cuenta en https://formspree.io
+          2. Crea un nuevo form y copia tu ID (ej: xpwzabcd)
+          3. Cambia "YOUR_FORM_ID" por tu ID real
+        -->
+        <div class="form-field"><label>nombre</label><input type="text" id="f-name" placeholder="Tu nombre" autocomplete="off"/></div>
+        <div class="form-field"><label>email</label><input type="email" id="f-email" placeholder="tu@email.com"/></div>
+        <div class="form-field"><label>mensaje</label><textarea id="f-msg" placeholder="Cuéntame sobre tu proyecto u oportunidad..."></textarea></div>
+        <button class="form-submit" id="form-btn">Enviar mensaje →</button>
+        <div id="form-feedback" class="form-msg"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Diseñado y desarrollado por <span>Alvaro Acarapi Loza</span> · 2026</p>
+</footer>
+
+<script>
+'use strict';
+
+/* ── PARTICLES ── */
+(function(){
+  const c=document.getElementById('particle-canvas');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let nodes=[],W,H;
+  function resize(){
+    W=c.width=c.parentElement.offsetWidth;
+    H=c.height=c.parentElement.offsetHeight;
+    nodes=[];
+    const n=Math.min(70,Math.floor(W*H/16000));
+    for(let i=0;i<n;i++) nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3});
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    nodes.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;});
+    for(let i=0;i<nodes.length;i++){for(let j=i+1;j<nodes.length;j++){const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.hypot(dx,dy);if(d<130){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=`rgba(0,212,255,${(1-d/130)*.35})`;ctx.lineWidth=0.6;ctx.stroke();}}}
+    nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,1.8,0,Math.PI*2);ctx.fillStyle='rgba(0,212,255,0.65)';ctx.fill();});
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+  document.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;
+    nodes.forEach(n=>{const dx=n.x-mx,dy=n.y-my,d=Math.hypot(dx,dy);if(d<90){n.vx+=(dx/d)*.25;n.vy+=(dy/d)*.25;const sp=Math.hypot(n.vx,n.vy);if(sp>1.4){n.vx=n.vx/sp*1.4;n.vy=n.vy/sp*1.4;}}});
+  });
+})();
+
+/* ── CURSOR ── */
+(function(){
+  const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+  if(!cur||!ring||window.matchMedia('(max-width:768px)').matches)return;
+  let rx=0,ry=0,cx=0,cy=0;
+  document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;});
+  (function lag(){rx+=(cx-rx)*.15;ry+=(cy-ry)*.15;cur.style.left=cx+'px';cur.style.top=cy+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lag);})();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.transform='translate(-50%,-50%) scale(1.5)';});
+    el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
+  });
+})();
+
+/* ── PROGRESS ── */
+(function(){
+  const b=document.getElementById('progress-bar');
+  if(!b)return;
+  window.addEventListener('scroll',()=>{b.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+})();
+
+/* ── NAV + BACK TOP ── */
+(function(){
+  const nav=document.querySelector('nav'),btn=document.getElementById('back-top');
+  const mBtn=document.querySelector('.nav-menu-btn'),links=document.querySelector('.nav-links');
+  window.addEventListener('scroll',()=>{
+    nav?.classList.toggle('scrolled',window.scrollY>60);
+    if(btn){btn.style.opacity=window.scrollY>400?'1':'0';btn.style.pointerEvents=window.scrollY>400?'all':'none';}
+  },{passive:true});
+  btn?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  mBtn?.addEventListener('click',()=>links?.classList.toggle('open'));
+  links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+})();
+
+/* ── REVEAL ── */
+(function(){
+  const sel='.reveal,.timeline-item,.skill-card,.project-card,.cert-card,.info-card';
+  const els=document.querySelectorAll(sel);
+  if(!('IntersectionObserver' in window)){els.forEach(el=>el.classList.add('visible'));return;}
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:0.08});
+  els.forEach(el=>obs.observe(el));
+})();
+
+/* ── TYPING ── */
+(function(){
+  const el=document.querySelector('.hero-typing');
+  if(!el)return;
+  const texts=['Ingeniero de Sistemas','Soporte IT & Help Desk','Networking & Cisco CCNA','Desarrollador Web Full Stack'];
+  let ti=0,ci=0,del=false;
+  function tick(){
+    const t=texts[ti];
+    el.textContent=del?t.slice(0,ci--):t.slice(0,ci++);
+    if(!del&&ci>t.length){del=true;setTimeout(tick,1400);return;}
+    if(del&&ci<0){del=false;ti=(ti+1)%texts.length;}
+    setTimeout(tick,del?42:78);
+  }
+  tick();
+})();
+
+/* ── COUNTERS ── */
+(function(){
+  document.querySelectorAll('.stat-num[data-target]').forEach(el=>{
+    const target=parseInt(el.dataset.target),suffix=el.dataset.suffix||'';
+    el.textContent='0'+suffix;
+    const obs=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;obs.disconnect();
+      const dur=1200,start=performance.now();
+      (function step(now){const p=Math.min((now-start)/dur,1);el.textContent=Math.floor(p*target)+suffix;if(p<1)requestAnimationFrame(step);})(start);
+    });
+    obs.observe(el);
+  });
+})();
+
+/* ── CONTACT FORM → Formspree ── */
+(function(){
+  const btn=document.getElementById('form-btn');
+  const fb=document.getElementById('form-feedback');
+  if(!btn)return;
+
+  // ⚠ Cambia 'YOUR_FORM_ID' por tu ID de Formspree (https://formspree.io)
+  const FORMSPREE_ID = 'YOUR_FORM_ID';
+
+  btn.addEventListener('click',async()=>{
+    const name=document.getElementById('f-name').value.trim();
+    const email=document.getElementById('f-email').value.trim();
+    const msg=document.getElementById('f-msg').value.trim();
+
+    if(!name||!email||!msg){show('Por favor completa todos los campos.','error');return;}
+
+    if(FORMSPREE_ID==='YOUR_FORM_ID'){
+      show('✓ Formulario listo — configura Formspree para recibir emails reales.','success');
+      return;
+    }
+
+    btn.disabled=true;btn.textContent='Enviando...';
+    try{
+      const res=await fetch(`https://formspree.io/f/${FORMSPREE_ID}`,{
+        method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({name,email,message:msg}),
+      });
+      const data=await res.json();
+      if(data.ok){
+        show('✓ ¡Mensaje enviado! Te responderé pronto.','success');
+        document.getElementById('f-name').value='';
+        document.getElementById('f-email').value='';
+        document.getElementById('f-msg').value='';
+      } else {show('✗ Error al enviar. Escríbeme directamente.','error');}
+    }catch{show('✗ Sin conexión. Escríbeme a alvaroloza26@gmail.com','error');}
+    finally{btn.disabled=false;btn.textContent='Enviar mensaje →';}
+  });
+
+  function show(msg,type){fb.textContent=msg;fb.className='form-msg '+type;setTimeout(()=>fb.className='form-msg',6000);}
+})();
+</script>
+</body>
+</html>
