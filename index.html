@@ -20,30 +20,30 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:var(--out);overflow-x:hidden;cursor:none}
 
-/* ── NOISE TEXTURE ── */
+
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.025;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:200px}
 
-/* ── CURSOR ── */
+
 #cur{width:10px;height:10px;background:var(--c1);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;mix-blend-mode:screen}
 #cur-trail{width:36px;height:36px;border:1.5px solid rgba(108,99,255,.4);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .2s ease}
 
-/* ── GLOW ORBS ── */
+
 .orb{position:fixed;border-radius:50%;pointer-events:none;filter:blur(80px);opacity:.12}
 #orb1{width:500px;height:500px;background:var(--c1);top:-100px;left:-100px}
 #orb2{width:400px;height:400px;background:var(--c2);bottom:-80px;right:-80px}
 #orb3{width:300px;height:300px;background:var(--c3);top:40%;left:40%;transform:translate(-50%,-50%)}
 
-/* ── PROGRESS ── */
+
 #prog{position:fixed;top:0;left:0;height:2px;z-index:600;width:0;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));transition:width .08s;border-radius:0 2px 2px 0}
 
-/* ── BACK TOP ── */
+
 #back-top{position:fixed;bottom:2rem;right:2rem;z-index:400;width:44px;height:44px;border-radius:50%;background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.3);color:var(--c1);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s;backdrop-filter:blur(10px)}
 #back-top.show{opacity:1;pointer-events:all}
 #back-top:hover{background:rgba(108,99,255,.3);transform:translateY(-3px)}
 
-/* ── NAV ── */
+
 nav{position:fixed;top:0;width:100%;z-index:300;padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(6,9,18,.7);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04);transition:padding .3s}
 nav.scrolled{padding:.8rem 2.5rem}
 .nav-brand{display:flex;align-items:center;gap:.75rem}
@@ -57,7 +57,7 @@ nav.scrolled{padding:.8rem 2.5rem}
 .nav-cv:hover{opacity:.85;transform:translateY(-1px)}
 .nav-mob{display:none;background:none;border:none;color:var(--txt);font-size:1.3rem;cursor:pointer}
 
-/* ── HERO ── */
+
 #hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2.5rem 5rem;position:relative;overflow:hidden}
 .hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(108,99,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
 .hero-wrap{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center;position:relative;z-index:2}
@@ -81,7 +81,7 @@ nav.scrolled{padding:.8rem 2.5rem}
 .h-stat-n span{font-size:1.2rem;color:var(--c1)}
 .h-stat-l{font-size:.62rem;color:var(--dim);margin-top:.3rem;letter-spacing:.04em}
 
-/* HERO CARD */
+
 .hero-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:2rem;backdrop-filter:blur(16px);position:relative;overflow:hidden}
 .hero-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(108,99,255,.05),transparent 60%,rgba(255,107,157,.05));pointer-events:none}
 .hc-top{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -109,7 +109,7 @@ section{padding:6rem 0}
 .s-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:var(--bright);letter-spacing:-.03em;margin-bottom:3rem;line-height:1.1}
 .s-title span{background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* ── ABOUT ── */
+
 #about{background:var(--l1)}
 .about-grid{display:grid;grid-template-columns:280px 1fr;gap:3rem;align-items:start}
 @media(max-width:800px){.about-grid{grid-template-columns:1fr}}
@@ -138,7 +138,7 @@ section{padding:6rem 0}
 .ic-k{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:.3rem;font-family:var(--mono)}
 .ic-v{font-size:.8rem;color:var(--txt);font-weight:500}
 
-/* ── SKILLS ── */
+
 #skills{background:var(--bg)}
 .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
 @media(max-width:700px){.skills-grid{grid-template-columns:1fr}}
@@ -158,7 +158,6 @@ section{padding:6rem 0}
 .sk-track{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
 .sk-fill{height:100%;border-radius:2px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
 
-/* ── PROJECTS ── */
 #projects{background:var(--l1)}
 .proj-filters{display:flex;gap:.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
 .pf-btn{font-size:.68rem;font-weight:600;padding:.4rem 1rem;border-radius:8px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--dim);cursor:pointer;font-family:var(--out);transition:all .2s}
@@ -183,7 +182,7 @@ section{padding:6rem 0}
 .pj-link:hover{color:var(--c1);border-color:rgba(108,99,255,.3);background:rgba(108,99,255,.07)}
 @media(max-width:700px){.pj{grid-template-columns:1fr}.pj-right{align-items:flex-start;flex-direction:row;flex-wrap:wrap}}
 
-/* ── EXPERIENCE ── */
+
 #experience{background:var(--bg)}
 .xp-list{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.04);border-radius:16px;overflow:hidden}
 .xp{background:var(--bg);padding:2rem 2.5rem;display:grid;grid-template-columns:180px 1fr;gap:2rem;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s,background .2s}
@@ -204,7 +203,7 @@ section{padding:6rem 0}
 .xp-body-list li::before{content:'›';position:absolute;left:0;color:var(--c1)}
 @media(max-width:750px){.xp{grid-template-columns:1fr;gap:.75rem}.xp-date-col{text-align:left}}
 
-/* ── CERTS ── */
+
 #certifications{background:var(--l1)}
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.75rem}
 .cert{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:1.1rem 1.3rem;display:flex;gap:1rem;align-items:flex-start;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .4s,border-color .2s}
@@ -214,7 +213,7 @@ section{padding:6rem 0}
 .cert-nm{font-size:.8rem;color:var(--txt);line-height:1.4;font-weight:500}
 .cert-iss{font-size:.65rem;color:var(--dim);margin-top:.2rem}
 
-/* ── CONTACT ── */
+
 #contact{background:var(--bg)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
 @media(max-width:800px){.contact-grid{grid-template-columns:1fr}}
@@ -234,7 +233,7 @@ section{padding:6rem 0}
 .btn-dl{background:linear-gradient(135deg,var(--c3),var(--c1));color:var(--bg);padding:.7rem 1.5rem;border-radius:10px;font-size:.75rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:opacity .2s,transform .15s;display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap}
 .btn-dl:hover{opacity:.88;transform:translateY(-2px)}
 
-/* FORM */
+
 .form-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:2rem}
 .form-row{margin-bottom:1.1rem}
 .form-row label{display:block;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:.45rem;font-family:var(--mono)}
@@ -248,17 +247,17 @@ section{padding:6rem 0}
 .f-fb.ok{display:block;background:rgba(0,217,180,.08);border:1px solid rgba(0,217,180,.2);color:var(--c3)}
 .f-fb.err{display:block;background:rgba(255,107,157,.08);border:1px solid rgba(255,107,157,.2);color:var(--c2)}
 
-/* FOOTER */
+
 footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .foot-l{font-size:.65rem;color:var(--dim)}
 .foot-l strong{color:var(--c1)}
 .foot-r{font-size:.62rem;color:rgba(255,255,255,.15)}
 
-/* REVEAL */
+
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:none}
 
-/* MOBILE */
+
 @media(max-width:900px){
   nav{padding:1rem 1.5rem}
   .nav-links{display:none}
@@ -274,18 +273,18 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
 </head>
 <body>
 
-<!-- AMBIENT -->
+
 <div class="orb" id="orb1"></div>
 <div class="orb" id="orb2"></div>
 <div class="orb" id="orb3"></div>
 
-<!-- CURSOR -->
+
 <div id="cur"></div>
 <div id="cur-trail"></div>
 <div id="prog"></div>
 <button id="back-top">↑</button>
 
-<!-- ══ NAV ══ -->
+
 <nav id="nav">
   <div class="nav-brand">
     <div class="nav-avatar" id="nav-avatar">AA
@@ -297,7 +296,6 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   <ul class="nav-links" id="nav-links">
     <li><a href="#about">Sobre mí</a></li>
     <li><a href="#skills">Skills</a></li>
-    <!--<li><a href="#projects">Proyectos</a></li>-->
     <li><a href="#experience">Experiencia</a></li>
     <li><a href="#certifications">Certs</a></li>
     <li><a href="#contact">Contacto</a></li>
@@ -305,7 +303,7 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   </ul>
 </nav>
 
-<!-- ══ HERO ══ -->
+
 <section id="hero">
   <div class="hero-bg-grid"></div>
   <div class="hero-wrap">
@@ -314,13 +312,11 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
       <h1 class="hero-h">Alvaro Gonzalo<br/><span class="g">Acarapi</span><br/>Loza</h1>
       <p class="hero-sub">Ingeniero de Sistemas especializado en Soporte IT, Redes Cisco y Desarrollo Web Full Stack. Mantengo infraestructuras corriendo y construyo soluciones que escalan.</p>
       <div class="hero-btns">
-        <!--<a href="#projects" class="btn-grad">Ver proyectos</a>-->
         <a href="#contact" class="btn-ghost">Contáctame</a>
         <a href="Alvaro_Gonzalo_Acarapi_Loza_ES.pdf" download class="btn-cv">↓ Descargar CV</a>
       </div>
       <div class="hero-stats">
         <div class="h-stat"><div class="h-stat-n">5<span>+</span></div><div class="h-stat-l">Años exp.</div></div>
-        <!--<div class="h-stat"><div class="h-stat-n">3<span></span></div><div class="h-stat-l">Proyectos</div></div>-->
         <div class="h-stat"><div class="h-stat-n">10<span>+</span></div><div class="h-stat-l">Certs.</div></div>
       </div>
     </div>
@@ -354,7 +350,7 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   </div>
 </section>
 
-<!-- ══ ABOUT ══ -->
+
 <section id="about">
   <div class="container">
     <div class="s-label reveal">02 — Sobre mí</div>
@@ -408,7 +404,7 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   </div>
 </section>
 
-<!-- ══ SKILLS ══ -->
+
 <section id="skills">
   <div class="container">
     <div class="s-label reveal">03 — Skills</div>
@@ -422,49 +418,6 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   </div>
 </section>
 
-<!-- ══ PROJECTS ══ 
-<section id="projects">
-  <div class="container">
-    <div class="s-label reveal">04 — Proyectos</div>
-    <h2 class="s-title reveal">Trabajo <span>destacado</span></h2>
-    <div class="proj-filters reveal">
-      <button class="pf-btn on" data-f="all">Todos</button>
-      <button class="pf-btn" data-f="web">Web</button>
-      <button class="pf-btn" data-f="redes">Redes</button>
-      <button class="pf-btn" data-f="datos">Datos</button>
-    </div>
-    <div class="proj-list reveal">
-      <div class="pj" data-cat="web">
-        <div><div class="pj-num">// 01</div><div class="pj-title">Sistema de Gestión de Inventario TI</div><p class="pj-desc">Aplicación web para control de inventario de equipos en Tapia Tech. Registra hardware, fechas de mantenimiento y asignación por área. Panel de reportes exportable.</p><div class="pj-stack"><span class="pj-t">HTML5</span><span class="pj-t">CSS3</span><span class="pj-t">JavaScript</span><span class="pj-t">PHP</span><span class="pj-t">MySQL</span><span class="pj-t">JSON</span></div></div>
-        <div class="pj-right"><span class="pj-status dev">En desarrollo</span><div class="pj-links"><a href="#" class="pj-link">→ Demo</a><a href="#" class="pj-link">⌥ Código</a></div></div>
-      </div>
-      <div class="pj" data-cat="redes">
-        <div><div class="pj-num">// 02</div><div class="pj-title">Dashboard de Monitoreo de Red</div><p class="pj-desc">Monitoreo en tiempo real de redes LAN. Visualiza nodos, latencia, alertas de caída. Frontend Vue.js + API REST en Python.</p><div class="pj-stack"><span class="pj-t">Vue.js</span><span class="pj-t">JavaScript</span><span class="pj-t">Python</span><span class="pj-t">MySQL</span><span class="pj-t">JSON</span><span class="pj-t">TCP/IP</span></div></div>
-        <div class="pj-right"><span class="pj-status dev">En desarrollo</span><div class="pj-links"><a href="#" class="pj-link">→ Demo</a><a href="#" class="pj-link">⌥ Código</a></div></div>
-      </div>
-      <div class="pj" data-cat="web datos">
-        <div><div class="pj-num">// 03</div><div class="pj-title">Portal de Soporte Técnico (Help Desk)</div><p class="pj-desc">Sistema de tickets IT con prioridad por criticidad, base de conocimientos y reportes mensuales de tiempo de respuesta por categoría.</p><div class="pj-stack"><span class="pj-t">HTML5</span><span class="pj-t">CSS3</span><span class="pj-t">PHP</span><span class="pj-t">MySQL</span><span class="pj-t">AJAX</span></div></div>
-        <div class="pj-right"><span class="pj-status live">Activo</span><div class="pj-links"><a href="#" class="pj-link">→ Demo</a><a href="#" class="pj-link">⌥ Código</a></div></div>
-      </div>
-    </div>
-  </div>
-</section>-->
-
-<!-- ══ EXPERIENCE ══ 
-<section id="experience">
-  <div class="container">
-    <div class="s-label reveal">05 — Experiencia</div>
-    <h2 class="s-title reveal">Trayectoria <span>profesional</span></h2>
-    <div class="xp-list">
-      <div class="xp"><div class="xp-date-col"><div class="xp-range">Nov 2024<br/>Nov 2025</div><div class="xp-loc">La Paz, Bolivia</div></div><div class="xp-dot-line"><div class="xp-dot-col"><div class="xp-dot"></div><div class="xp-dot-line-v"></div></div><div><div class="xp-body-role">Analista de Soporte TI</div><div class="xp-body-co">Tapia Tech</div><ul class="xp-body-list"><li>Soporte técnico a usuarios y sistemas informáticos</li><li>Diagnóstico y resolución de incidencias HW/SW</li><li>Mantenimiento preventivo y correctivo de equipos</li><li>Contribución a la continuidad operativa de la infraestructura</li></ul></div></div></div>
-      <div class="xp"><div class="xp-date-col"><div class="xp-range">Abr 2024<br/>Oct 2024</div><div class="xp-loc">La Paz, Bolivia</div></div><div class="xp-dot-line"><div class="xp-dot-col"><div class="xp-dot"></div><div class="xp-dot-line-v"></div></div><div><div class="xp-body-role">Asistente Técnico</div><div class="xp-body-co">Tecno Inside</div><ul class="xp-body-list"><li>Instalación de redes LAN y configuración Wi-Fi</li><li>Asesoría técnica a clientes sobre soluciones TI</li><li>Gestión de inventario de equipos informáticos</li></ul></div></div></div>
-      <div class="xp"><div class="xp-date-col"><div class="xp-range">Abr 2023<br/>Oct 2023</div><div class="xp-loc">La Paz, Bolivia</div></div><div class="xp-dot-line"><div class="xp-dot-col"><div class="xp-dot"></div><div class="xp-dot-line-v"></div></div><div><div class="xp-body-role">Pasante TI</div><div class="xp-body-co">Agencia Nacional de Hidrocarburos (ANH)</div><ul class="xp-body-list"><li>Mantenimiento preventivo institucional</li><li>Optimización de conectividad en redes internas</li></ul></div></div></div>
-      <div class="xp"><div class="xp-date-col"><div class="xp-range">Mar 2019<br/>Sep 2019</div><div class="xp-loc">La Paz, Bolivia</div></div><div class="xp-dot-line"><div class="xp-dot-col"><div class="xp-dot"></div></div><div><div class="xp-body-role">Auxiliar Área Técnica</div><div class="xp-body-co">Auditores & Consultores HUGJAV Ltda.</div><ul class="xp-body-list"><li>Organización y gestión de bases de datos</li><li>Mantenimiento preventivo y correctivo de equipos</li></ul></div></div></div>
-    </div>
-  </div>
-</section>-->
-
-<!-- ══ CERTIFICATIONS ══ -->
 <section id="certifications">
   <div class="container">
     <div class="s-label reveal">04 — Formación</div>
@@ -484,7 +437,7 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   </div>
 </section>
 
-<!-- ══ CONTACT ══ -->
+
 <section id="contact">
   <div class="container">
     <div class="s-label reveal">05 — Contacto</div>
@@ -493,7 +446,7 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
       <div class="reveal">
         <p class="contact-info-text">Disponible para posiciones de <strong style="color:var(--txt)">Soporte IT, Help Desk, Administrador de Sistemas</strong> o <strong style="color:var(--txt)">Desarrollador Web Junior</strong> — presencial, remoto o con reubicación.</p>
 
-        <!-- CV DOWNLOAD BANNER -->
+     
         <div class="cv-banner">
           <div class="cv-banner-text">
             <div class="cv-title">Curriculum Vitae — PDF</div>
@@ -531,7 +484,7 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
 <script>
 'use strict';
 
-/* CURSOR */
+
 (function(){
   const c=document.getElementById('cur'),t=document.getElementById('cur-trail');
   if(!c||window.matchMedia('(max-width:900px)').matches)return;
@@ -544,7 +497,7 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   });
 })();
 
-/* PROGRESS + BACK TOP */
+
 (function(){
   const prog=document.getElementById('prog'),bt=document.getElementById('back-top'),nav=document.getElementById('nav');
   window.addEventListener('scroll',()=>{
@@ -556,14 +509,14 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   bt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 })();
 
-/* MOBILE NAV */
+
 (function(){
   const btn=document.getElementById('mob-btn'),nl=document.getElementById('nav-links');
   btn.addEventListener('click',()=>{nl.classList.toggle('open');btn.textContent=nl.classList.contains('open')?'✕':'☰';});
   nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nl.classList.remove('open');btn.textContent='☰';}));
 })();
 
-/* NAV ACTIVE */
+
 (function(){
   const secs=document.querySelectorAll('section[id]'),links=document.querySelectorAll('.nav-links a');
   const obs=new IntersectionObserver(entries=>{
@@ -572,7 +525,7 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   secs.forEach(s=>obs.observe(s));
 })();
 
-/* ORB PARALLAX */
+
 document.addEventListener('mousemove',e=>{
   const x=(e.clientX/window.innerWidth-.5)*20,y=(e.clientY/window.innerHeight-.5)*20;
   document.getElementById('orb1').style.transform=`translate(${x*.5}px,${y*.5}px)`;
@@ -580,7 +533,7 @@ document.addEventListener('mousemove',e=>{
   document.getElementById('orb3').style.transform=`translate(${x*.2}px,${y*.2}px)`;
 });
 
-/* REVEAL */
+
 (function(){
   const els=document.querySelectorAll('.reveal,.xp,.cert');
   if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('visible'));return;}
@@ -590,7 +543,7 @@ document.addEventListener('mousemove',e=>{
   els.forEach(e=>obs.observe(e));
 })();
 
-/* SKILL BARS */
+
 (function(){
   const fills=document.querySelectorAll('.sk-fill[data-w],.hc-fill[data-w]');
   const obs=new IntersectionObserver(entries=>{
@@ -599,7 +552,7 @@ document.addEventListener('mousemove',e=>{
   fills.forEach(f=>obs.observe(f));
 })();
 
-/* PROJECT FILTER */
+
 (function(){
   document.querySelectorAll('.pf-btn').forEach(b=>{
     b.addEventListener('click',()=>{
@@ -616,11 +569,11 @@ document.addEventListener('mousemove',e=>{
 
 
 
-/* CONTACT FORM */
+
 (function(){
   const btn=document.getElementById('form-btn'),fb=document.getElementById('form-fb');
   if(!btn)return;
-  const FID='YOUR_FORM_ID'; // ← reemplaza en formspree.io
+  const FID='YOUR_FORM_ID'; 
   btn.addEventListener('click',async()=>{
     const name=document.getElementById('f-name').value.trim();
     const email=document.getElementById('f-email').value.trim();
