@@ -269,22 +269,47 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
   .container{padding:0 1.5rem}
   section{padding:4rem 0}
 }
-  /* iframe de demos */
-.demo-frame {
-  width: 100%;
-  height: 350px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--c1);
-  box-shadow: 0 0 20px rgba(0,255,136,.15);
-}
-
-.demo-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: white;
-}
+/* ===== PROYECTOS ===== */
+.projects-grid {
+   display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+  .project-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: .3s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--c1);
+  }
+  .project-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+  }
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .project-content {
+    padding: 22px;
+  }
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:768px){
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .project-image {
+      height:220px;
+    }
+  }
+  
 </style>
 </head>
 <body>
@@ -421,21 +446,44 @@ footer{background:var(--l1);border-top:1px solid rgba(255,255,255,.05);padding:2
 </section>
 
 <section id="projects">
-<div class="project-card">
-
-<h3>Help Desk IT</h3>
-
-<img src="helpdesk.png">
-
-<p>
-Sistema de gestión de tickets desarrollado con PHP y MySQL.
-</p>
-
-<a href="https://helpdeskaal.ifree.page/" target="_blank">
-Ver demo
-</a>
-
-</div>
+  <div class="container">
+    <div class="s-label reveal">Projects</div>
+    <h2 class="s-title reveal">
+      Mis <span>proyectos</span>
+    </h2>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-image">
+          <img src="helpdesk.png">
+        </div>
+        <div class="project-content">
+          <h3>Help Desk IT</h3>
+          <p>
+          Sistema de gestión de tickets para soporte técnico.
+          </p>
+          <div class="project-tech">
+            <span>PHP</span>
+            <span>MySQL</span>
+            <span>Bootstrap</span>
+          </div>
+          <a href="https://helpdeskaal.ifree.page/" target="_blank">
+            Ver demo →
+          </a>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-image">
+          <img src="proximamente.png">
+        </div>
+        <div class="project-content">
+          <h3>Próximamente</h3>
+          <p>
+          Nuevo proyecto en desarrollo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
   
 <section id="skills">
